@@ -29,7 +29,7 @@ methods:{
                 console.log(token,expired);
                 //token 存在cookie
                 document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
-                window.location='/product.html';
+                window.location='https://evalin0316.github.io/Vue_apiPractice/product.html';
             }else{
                 alert(res.data.message);
                 window.location.reload();
