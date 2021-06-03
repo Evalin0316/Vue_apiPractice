@@ -8,7 +8,7 @@ const vue={
         apiPath:'ear077',
         products: [],
         isNew: false,
-        tempProduct:{
+        templateProduct:{
             imageUrl:[],
         },
     };
@@ -28,33 +28,33 @@ const vue={
             if(this.isNew){
                 this.products.push({
                     id:Date.now(),
-                    ...this.tempProduct,
+                    ...this.templateProduct,
                 })
 
-            this.tempProduct={
+            this.templateProduct={
                 imageUrl:[],
             };
             productModal.hide();
             }else{
-                const index = this.products.findIndex((item) => item.id === this.tempProduct.id);
-                this.products[index] = this.tempProduct;
+                const index = this.products.findIndex((item) => item.id === this.templateProduct.id);
+                this.products[index] = this.templateProduct;
                 productModal.hide();
             }
         },
         openModal(isNew,item){
             if(isNew === 'new'){
-                this.tempProduct = {
+                this.templateProduct = {
                     imageUrl:[],
                 };
                 this.isNew=true;
                 productModal.show();
             }else if(isNew === 'edit'){
-                this.tempProduct = {...item};
+                this.templateProduct = {...item};
                 this.isNew = false;
                 productModal.show();
             }else if(isNew === 'delete'){
-                this.tempProduct= {...item};
-                delProductModel.show();
+                this.templateProduct= {...item};
+                delProductModal.show();
             }
         },
         delProduct() {
@@ -62,12 +62,12 @@ const vue={
             // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
             // findIndex 用法參考
             // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
-            this.products.splice(this.products.findIndex((item) => item.id === this.tempProduct.id), 1);
+            this.products.splice(this.products.findIndex((item) => item.id === this.templateProduct.id), 1);
             delProductModal.hide();
           },
           createImages() {
-            this.tempProduct.imagesUrl = [];
-            this.tempProduct.imagesUrl.push('');
+            this.templateProduct.imagesUrl = [];
+            this.templateProduct.imagesUrl.push('');
           },
         },
         mounted() {
